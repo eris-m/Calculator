@@ -1,0 +1,116 @@
+using System;
+
+namespace Calculator.Models;
+
+public interface IExpression
+{
+    /// <summary>
+    /// Similar to <c>ToString</c> but is meant for UI representation.
+    /// </summary>
+    string AsString();
+
+    /// <summary>
+    /// Evaluates the expression into a float.
+    /// </summary>
+    float Evaluate();
+}
+
+/// <summary>
+/// A simple number expression.
+/// </summary>
+/// <param name="value">The value of the expression.</param>
+public class FloatExpression(float value) : IExpression
+{
+    /// <summary>
+    /// The floating point value of the expression.
+    /// </summary>
+    public float Value { get; set; } = value;
+    
+    public string AsString()
+    {
+        return Value.ToString();
+    }
+
+    public float Evaluate()
+    {
+        return Value;
+    }
+}
+
+/// <summary>
+/// An expression representing a binary operation.
+/// </summary>
+public class BinaryOperationExpression : IExpression
+{
+    /// <summary>
+    /// Binary operator kind.
+    /// </summary>
+    public enum BinaryOperator
+    {
+        /// <summary>
+        /// Addition.
+        /// </summary>
+        Add,
+        /// <summary>
+        /// Subtraction.
+        /// </summary>
+        Subtract,
+        /// <summary>
+        /// Multiplication.
+        /// </summary>
+        Multiply,
+        /// <summary>
+        /// Division.
+        /// </summary>
+        Divide
+    }
+
+    /// <summary>
+    /// The operator used by the expression.
+    /// </summary>
+    public BinaryOperator Operator { get; set; }
+    /// <summary>
+    /// Left hand side of the expression.
+    /// </summary>
+    public IExpression Left { get; set; }
+    /// <summary>
+    /// Right hand side of the expression.
+    /// </summary>
+    public IExpression Right { get; set; }
+
+    public BinaryOperationExpression(BinaryOperator @operator, IExpression left, IExpression right)
+    {
+        Operator = @operator;
+        Left = left;
+        Right = right;
+    }
+
+    public string AsString()
+    {
+        char operatorChar = Operator switch
+        {
+            BinaryOperator.Add => '+',
+            BinaryOperator.Subtract => '-',
+            BinaryOperator.Multiply => '×',
+            BinaryOperator.Divide => '÷',
+            _ => throw new ArgumentOutOfRangeException()
+        };
+
+        return $"{Left.AsString()} {operatorChar} {Right.AsString()}";
+    }
+
+    public float Evaluate()
+    {
+        float left = Left.Evaluate();
+        float right = Right.Evaluate();
+
+        return Operator switch
+        {
+            BinaryOperator.Add => left + right,
+            BinaryOperator.Subtract => left - right,
+            BinaryOperator.Multiply => left * right,
+            BinaryOperator.Divide => left / right,
+            _ => throw new ArgumentOutOfRangeException()
+        };
+    }
+}
