@@ -8,9 +8,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fb6bf662-b01a-4a18-b34d-1853c827f5ab" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Calculator/Tokeniser.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Calculator/Parser.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CalculatorTests/ParserTests.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Calculator/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Calculator/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Calculator.sln" beforeDir="false" afterPath="$PROJECT_DIR$/Calculator.sln" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Calculator.sln.DotSettings.user" beforeDir="false" afterPath="$PROJECT_DIR$/Calculator.sln.DotSettings.user" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,14 +25,16 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/cdbc0e69be1f48bf9895cf8070bf0e68e26400/07/ed38d68c/IList`1.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/cdbc0e69be1f48bf9895cf8070bf0e68e26400/60/69392157/String.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/98514e314f1feddb3082dbe8507ecec1a81b6491c0db7dc53c2e8c13949e4360/Assert.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/d0d96f40fdd9bc395fad59e4a8a6539e4eecce4865809ef4be1a473f911eceaa/ReadOnlySpan.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
-  <component name="ProjectColorInfo"><![CDATA[{
-  "customColor": "",
-  "associatedIndex": 0
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 0
+}</component>
   <component name="ProjectId" id="2wvUMkDiFw3Quj17owv9EEaHR8g" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -40,7 +43,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     ".NET Project.Calculator.executor": "Debug",
-    "5537f158-d277-4937-957d-9a88b4aba825.executor": "Debug",
+    "5537f158-d277-4937-957d-9a88b4aba825.executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
@@ -54,7 +57,7 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunManager" selected=".NET Project.Calculator">
+  <component name="RunManager" selected="5537f158-d277-4937-957d-9a88b4aba825">
     <configuration name="Calculator" type="DotNetProject" factoryName=".NET Project">
       <option name="EXE_PATH" value="" />
       <option name="PROGRAM_PARAMETERS" value="" />
@@ -87,7 +90,8 @@
       <option name="presentableId" value="Default" />
       <updated>1746889829470</updated>
       <workItem from="1746889830412" duration="4827000" />
-      <workItem from="1746921512975" duration="126000" />
+      <workItem from="1746921512975" duration="15383000" />
+      <workItem from="1746946219020" duration="9028000" />
     </task>
     <task id="LOCAL-00001" summary="Initial Commit">
       <option name="closed" value="true" />
@@ -121,7 +125,15 @@
       <option name="project" value="LOCAL" />
       <updated>1746891828360</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Added Tokeniser.cs and tests.">
+      <option name="closed" value="true" />
+      <created>1746921750225</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1746921750225</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -133,7 +145,8 @@
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
     <MESSAGE value="Initial Commit" />
     <MESSAGE value="Added expressions" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added expressions" />
+    <MESSAGE value="Added Tokeniser.cs and tests." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added Tokeniser.cs and tests." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
