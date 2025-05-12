@@ -180,7 +180,7 @@ public static class Parser
 
         tokens = SkipSpaces(tokens);
 
-        if (!ParseFloat(out ParserOutput secondFloat, tokens))
+        if (!ParseNext(out ParserOutput secondFloat, tokens))
         {
             output = new ParserOutput();
             return false; 
