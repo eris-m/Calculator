@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -7,11 +9,6 @@ namespace Calculator.ViewModels;
 
 public partial class MainWindowViewModel : ViewModelBase
 {
-    public enum ButtonId
-    {
-        One,
-    }
-    
     public string InputText
     {
         get => _inputText;
@@ -21,12 +18,25 @@ public partial class MainWindowViewModel : ViewModelBase
             RunCalculation();
         }
     }
-    
+
+    public ObservableCollection<string> History { get; } = [];
+
     private string _inputText = "";
 
     [ObservableProperty]
     private float _output = 0.0f;
 
+    public MainWindowViewModel()
+    {
+        History.CollectionChanged += (sender, args) => InputText = "";
+    }
+    
+    [RelayCommand]
+    public void OnEquals()
+    {
+        History.Add($"{InputText} = {_output}");
+    }
+    
     [RelayCommand]
     public void OnButtonClick(char button)
     {

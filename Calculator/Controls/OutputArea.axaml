@@ -7,12 +7,26 @@
              x:Class="Calculator.Controls.OutputArea"
              x:DataType="vm:MainWindowViewModel">
     <StackPanel DockPanel.Dock="Right" VerticalAlignment="Stretch">
+        <!-- Input box -->
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
             <TextBox Text="{Binding InputText}" />
             <Button Command="{Binding Backspace}">⌫</Button>
         </StackPanel>
-        <TextBlock>
-            <Bold>= <Label Content="{Binding Output}" /></Bold>
-        </TextBlock>
+
+        <StackPanel Orientation="Vertical">
+            <!-- Current Equals -->
+            <TextBlock>
+                <Bold>= <Label Content="{Binding Output}" /></Bold>
+            </TextBlock>
+
+            <!-- History -->
+            <ItemsControl ItemsSource="{Binding History}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Label Content="{Binding}" />
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </StackPanel>
     </StackPanel>
 </UserControl>

@@ -9,10 +9,7 @@
   <component name="ChangeListManager">
     <list default="true" id="fb6bf662-b01a-4a18-b34d-1853c827f5ab" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Calculator/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Calculator/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Calculator/Controls/OutputWindow.axaml" beforeDir="false" afterPath="$PROJECT_DIR$/Calculator/Controls/OutputArea.axaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Calculator/Controls/OutputWindow.axaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Calculator/Controls/OutputArea.axaml.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Calculator/ViewModels/MainWindowViewModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Calculator/ViewModels/MainWindowViewModel.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Calculator/Views/MainWindow.axaml" beforeDir="false" afterPath="$PROJECT_DIR$/Calculator/Views/MainWindow.axaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Calculator/Controls/ButtonGrid.axaml" beforeDir="false" afterPath="$PROJECT_DIR$/Calculator/Controls/ButtonGrid.axaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,7 +61,7 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
-  <component name="RunManager" selected=".NET Project.Calculator">
+  <component name="RunManager" selected="Publish to folder.publish linux">
     <configuration name="publish linux" type="DotNetFolderPublish" factoryName="Publish to folder">
       <riderPublish configuration="Release" platform="Any CPU" produce_single_file="true" ready_to_run="true" runtime="linux-x64" target_folder="$PROJECT_DIR$/Calculator/publish/linux" target_framework="net9.0" uuid_high="553650543686995327" uuid_low="-5744315027186700301" />
       <method v="2" />
@@ -114,7 +111,10 @@
       <workItem from="1746946219020" duration="9028000" />
       <workItem from="1747027060049" duration="5670000" />
       <workItem from="1747042701588" duration="2719000" />
-      <workItem from="1747048312892" duration="1603000" />
+      <workItem from="1747048312892" duration="1648000" />
+      <workItem from="1747058081994" duration="578000" />
+      <workItem from="1747058965927" duration="1456000" />
+      <workItem from="1747061716051" duration="1140000" />
     </task>
     <task id="LOCAL-00001" summary="Initial Commit">
       <option name="closed" value="true" />
@@ -196,7 +196,23 @@
       <option name="project" value="LOCAL" />
       <updated>1747034100179</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Added backspace">
+      <option name="closed" value="true" />
+      <created>1747054647460</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1747054647460</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Added history!">
+      <option name="closed" value="true" />
+      <created>1747062812341</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1747062812341</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -214,7 +230,9 @@
     <MESSAGE value="avalonia.xml" />
     <MESSAGE value="Added buttons" />
     <MESSAGE value="Changed parser to work with buttons." />
-    <option name="LAST_COMMIT_MESSAGE" value="Changed parser to work with buttons." />
+    <MESSAGE value="Added backspace" />
+    <MESSAGE value="Added history!" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added history!" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
