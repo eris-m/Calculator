@@ -91,8 +91,10 @@ public static class Tokeniser
         {
             '+' => TokenKind.Add,
             '-' => TokenKind.Sub,
-            '*' => TokenKind.Mul,
+            '*'  => TokenKind.Mul,
+            '×' => TokenKind.Mul,
             '/' => TokenKind.Div,
+            '÷' => TokenKind.Div,
             '.' => TokenKind.Period,
             ',' => TokenKind.Comma,
             ' ' => TokenKind.Space,

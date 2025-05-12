@@ -8,20 +8,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fb6bf662-b01a-4a18-b34d-1853c827f5ab" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Calculator/Controls/ButtonGrid.axaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Calculator/Controls/ButtonGrid.axaml.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Calculator/Controls/GridButton.axaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Calculator/Controls/GridButton.axaml.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Calculator/Controls/OutputWindow.axaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Calculator/Controls/OutputWindow.axaml.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Calculator/.idea/avalonia.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Calculator/.idea/avalonia.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Calculator/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Calculator/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Calculator.sln.DotSettings.user" beforeDir="false" afterPath="$PROJECT_DIR$/Calculator.sln.DotSettings.user" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Calculator/App.axaml" beforeDir="false" afterPath="$PROJECT_DIR$/Calculator/App.axaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Calculator/Calculator.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Calculator/Calculator.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Calculator/ViewModels/MainWindowViewModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Calculator/ViewModels/MainWindowViewModel.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Calculator/Views/MainWindow.axaml" beforeDir="false" afterPath="$PROJECT_DIR$/Calculator/Views/MainWindow.axaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Calculator/Views/MainWindow.axaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Calculator/Views/MainWindow.axaml.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Calculator/Tokeniser.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Calculator/Tokeniser.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -75,7 +63,7 @@
 }</component>
   <component name="RunManager" selected=".NET Project.Calculator">
     <configuration name="publish linux" type="DotNetFolderPublish" factoryName="Publish to folder">
-      <riderPublish configuration="Release" platform="Any CPU" produce_single_file="true" runtime="linux-x64" target_folder="$PROJECT_DIR$/Calculator/publish/linux" target_framework="net9.0" uuid_high="553650543686995327" uuid_low="-5744315027186700301" />
+      <riderPublish configuration="Release" platform="Any CPU" produce_single_file="true" ready_to_run="true" runtime="linux-x64" target_folder="$PROJECT_DIR$/Calculator/publish/linux" target_framework="net9.0" uuid_high="553650543686995327" uuid_low="-5744315027186700301" />
       <method v="2" />
     </configuration>
     <configuration name="publish windows" type="DotNetFolderPublish" factoryName="Publish to folder">
@@ -121,7 +109,7 @@
       <workItem from="1746889830412" duration="4827000" />
       <workItem from="1746921512975" duration="15383000" />
       <workItem from="1746946219020" duration="9028000" />
-      <workItem from="1747027060049" duration="4323000" />
+      <workItem from="1747027060049" duration="4998000" />
     </task>
     <task id="LOCAL-00001" summary="Initial Commit">
       <option name="closed" value="true" />
@@ -187,7 +175,15 @@
       <option name="project" value="LOCAL" />
       <updated>1747014116894</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Added buttons">
+      <option name="closed" value="true" />
+      <created>1747033539000</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1747033539000</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -203,7 +199,8 @@
     <MESSAGE value="Fixed addition parsing." />
     <MESSAGE value="Added ui." />
     <MESSAGE value="avalonia.xml" />
-    <option name="LAST_COMMIT_MESSAGE" value="avalonia.xml" />
+    <MESSAGE value="Added buttons" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added buttons" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
