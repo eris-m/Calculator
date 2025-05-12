@@ -16,7 +16,7 @@
     </Design.DataContext>
 
     <DockPanel>
-        <TextBox DockPanel.Dock="Top" Text="{Binding Text}" />
-        <Label Content="{Binding IsValid}" />
+        <TextBox DockPanel.Dock="Top" Text="{Binding InputText}" />
+        <Label Content="{Binding Output}" />
     </DockPanel>
 </Window>

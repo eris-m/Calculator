@@ -1,25 +1,38 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿using System;
+using System.Linq;
+using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace Calculator.ViewModels;
 
 public partial class MainWindowViewModel : ViewModelBase
 {
-    public string Text
+    public string InputText
     {
-        get => _text;
+        get => _inputText;
         set
         {
-            SetProperty(ref _text, value);
-            IsValid = IsValidValue();
+            SetProperty(ref _inputText, value);
+            RunCalculation();
         }
     }
     
-    [ObservableProperty]
-    private bool _isValid = false;
-    private string _text = "";
+    private string _inputText = "";
 
-    private bool IsValidValue()
+    [ObservableProperty]
+    private float _output = 0.0f;
+
+    private void RunCalculation()
     {
-        return float.TryParse(_text, out _);
+        var tokens = Tokeniser.TokeniseString(InputText);
+        var parsed = Parser.ParseNext(out var output, tokens.ToArray().AsSpan());
+
+        if (!parsed)
+        {
+            Output = float.NaN;
+        }
+        else
+        {
+            Output = output.Expression.Evaluate();
+        }
     }
 }

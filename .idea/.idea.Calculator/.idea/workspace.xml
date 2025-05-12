@@ -8,10 +8,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fb6bf662-b01a-4a18-b34d-1853c827f5ab" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Calculator/Parser.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CalculatorTests/ParserTests.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Calculator/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Calculator/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Calculator.sln.DotSettings.user" beforeDir="false" afterPath="$PROJECT_DIR$/Calculator.sln.DotSettings.user" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Calculator/Parser.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Calculator/Parser.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Calculator/ViewModels/MainWindowViewModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Calculator/ViewModels/MainWindowViewModel.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Calculator/Views/MainWindow.axaml" beforeDir="false" afterPath="$PROJECT_DIR$/Calculator/Views/MainWindow.axaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,7 +42,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    ".NET Project.Calculator.executor": "Debug",
+    ".NET Project.Calculator.executor": "Run",
     "5537f158-d277-4937-957d-9a88b4aba825.executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
@@ -57,7 +57,7 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunManager" selected="5537f158-d277-4937-957d-9a88b4aba825">
+  <component name="RunManager">
     <configuration name="Calculator" type="DotNetProject" factoryName=".NET Project">
       <option name="EXE_PATH" value="" />
       <option name="PROGRAM_PARAMETERS" value="" />
