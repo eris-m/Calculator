@@ -1,0 +1,48 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:controls="clr-namespace:Calculator.Controls"
+             xmlns:vm="clr-namespace:Calculator.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="Calculator.Controls.ButtonGrid"
+             x:DataType="vm:MainWindowViewModel">
+    <Grid DockPanel.Dock="Bottom" ColumnDefinitions="*,*,*,*" RowDefinitions="*,*,*,*,*">
+        <!-- Row 0 -->
+        <!-- <Button Grid.Row="0" Grid.Column="0" Classes="stretch" > -->
+        <!--     <Button.Command><Binding Path="OnButtonClick" /></Button.Command> -->
+        <!--     <Button.CommandParameter>1</Button.CommandParameter> -->
+        <!--     1 -->
+        <!-- </Button> -->
+        <controls:GridButton Grid.Row="0" Grid.Column="0" Value="1" Command="{Binding OnButtonClick}" />
+        <controls:GridButton Grid.Row="0" Grid.Column="1" Value="2" Command="{Binding OnButtonClick}" />
+        <controls:GridButton Grid.Row="0" Grid.Column="2" Value="3"
+                             Command="{Binding OnButtonClick}" />
+        <controls:GridButton Grid.Row="0" Grid.Column="3" Value="+"
+                             Command="{Binding OnButtonClick}" />
+
+        <!-- Row 1  -->
+        <controls:GridButton Grid.Row="1" Grid.Column="0" Value="4"
+                             Command="{Binding OnButtonClick}" />
+        <controls:GridButton Grid.Row="1" Grid.Column="1" Value="5"
+                             Command="{Binding OnButtonClick}" />
+        <controls:GridButton Grid.Row="1" Grid.Column="2" Value="6"
+                             Command="{Binding OnButtonClick}" />
+        <controls:GridButton Grid.Row="1" Grid.Column="3" Value="-"
+                             Command="{Binding OnButtonClick}" />
+
+        <!-- Row 2  -->
+        <controls:GridButton Grid.Row="2" Grid.Column="0" Value="4"
+                             Command="{Binding OnButtonClick}" />
+        <controls:GridButton Grid.Row="2" Grid.Column="1" Value="5" Command="{Binding OnButtonClick}" />
+        <controls:GridButton Grid.Row="2" Grid.Column="2" Value="6" Command="{Binding OnButtonClick}" />
+        <controls:GridButton Grid.Row="2" Grid.Column="3" Value="×" Command="{Binding OnButtonClick}" />
+
+        <!-- Row 3  -->
+        <controls:GridButton Grid.Row="3" Grid.Column="0" Value="0" Command="{Binding OnButtonClick}" />
+        <controls:GridButton Grid.Row="3" Grid.Column="3" Value="÷" Command="{Binding OnButtonClick}" />
+
+        <!-- Equals Row  -->
+        <Button Grid.Row="4" Grid.Column="3" Classes="stretch">=</Button>
+    </Grid>
+</UserControl>

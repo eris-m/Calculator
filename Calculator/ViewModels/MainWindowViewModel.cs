@@ -1,11 +1,17 @@
 ﻿using System;
 using System.Linq;
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 
 namespace Calculator.ViewModels;
 
 public partial class MainWindowViewModel : ViewModelBase
 {
+    public enum ButtonId
+    {
+        One,
+    }
+    
     public string InputText
     {
         get => _inputText;
@@ -21,6 +27,12 @@ public partial class MainWindowViewModel : ViewModelBase
     [ObservableProperty]
     private float _output = 0.0f;
 
+    [RelayCommand]
+    public void OnButtonClick(char button)
+    {
+        InputText += button;
+    }
+    
     private void RunCalculation()
     {
         var tokens = Tokeniser.TokeniseString(InputText);

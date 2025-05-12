@@ -3,20 +3,27 @@
         xmlns:vm="using:Calculator.ViewModels"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:controls="clr-namespace:Calculator.Controls"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="Calculator.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
         Icon="/Assets/avalonia-logo.ico"
         Title="Calculator">
 
+    <Window.Styles>
+        <Style Selector="Button.stretch">
+            <Setter Property="VerticalAlignment" Value="Stretch" />
+            <Setter Property="HorizontalAlignment" Value="Stretch" />
+        </Style>
+    </Window.Styles>
     <Design.DataContext>
         <!-- This only sets the DataContext for the previewer in an IDE,
              to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
-        <vm:MainWindowViewModel/>
+        <vm:MainWindowViewModel />
     </Design.DataContext>
 
-    <DockPanel>
-        <TextBox DockPanel.Dock="Top" Text="{Binding InputText}" />
-        <Label Content="{Binding Output}" />
-    </DockPanel>
+    <Grid ColumnDefinitions="2*,1*">
+        <controls:ButtonGrid Grid.Column="0" />
+        <controls:OutputWindow Grid.Column="1" />
+    </Grid>
 </Window>

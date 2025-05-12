@@ -8,10 +8,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fb6bf662-b01a-4a18-b34d-1853c827f5ab" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Calculator/Controls/ButtonGrid.axaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Calculator/Controls/ButtonGrid.axaml.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Calculator/Controls/GridButton.axaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Calculator/Controls/GridButton.axaml.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Calculator/Controls/OutputWindow.axaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Calculator/Controls/OutputWindow.axaml.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Calculator/.idea/avalonia.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Calculator/.idea/avalonia.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Calculator/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Calculator/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Calculator/Parser.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Calculator/Parser.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Calculator.sln.DotSettings.user" beforeDir="false" afterPath="$PROJECT_DIR$/Calculator.sln.DotSettings.user" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Calculator/App.axaml" beforeDir="false" afterPath="$PROJECT_DIR$/Calculator/App.axaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Calculator/Calculator.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Calculator/Calculator.csproj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Calculator/ViewModels/MainWindowViewModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Calculator/ViewModels/MainWindowViewModel.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Calculator/Views/MainWindow.axaml" beforeDir="false" afterPath="$PROJECT_DIR$/Calculator/Views/MainWindow.axaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Calculator/Views/MainWindow.axaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Calculator/Views/MainWindow.axaml.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,8 +37,11 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/cdbc0e69be1f48bf9895cf8070bf0e68e26400/07/ed38d68c/IList`1.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/cdbc0e69be1f48bf9895cf8070bf0e68e26400/60/69392157/String.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/741f1b1828533d863f1ca754b6a4b4c5499cd8380de3d5060b965e67a4e5f/Button.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/98514e314f1feddb3082dbe8507ecec1a81b6491c0db7dc53c2e8c13949e4360/Assert.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/bca7a61ba5d3fddaa4172ec8392f5556b15a3037f5e88ab8ae199e66d4e38/DirectProperty.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/d0d96f40fdd9bc395fad59e4a8a6539e4eecce4865809ef4be1a473f911eceaa/ReadOnlySpan.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock:///mnt/drive3/proj/Calculator/Calculator/App.axaml" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProjectColorInfo">{
@@ -40,28 +53,39 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    ".NET Project.Calculator.executor": "Run",
-    "5537f158-d277-4937-957d-9a88b4aba825.executor": "Run",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "master",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.lookFeel",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;.NET Project.Calculator.executor&quot;: &quot;Run&quot;,
+    &quot;5537f158-d277-4937-957d-9a88b4aba825.executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;Publish to folder.publish linux.executor&quot;: &quot;Run&quot;,
+    &quot;Publish to folder.publish windows.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/mnt/drive3/proj/Calculator/Calculator/publish/linux&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
-  <component name="RunManager">
+}</component>
+  <component name="RunManager" selected=".NET Project.Calculator">
+    <configuration name="publish linux" type="DotNetFolderPublish" factoryName="Publish to folder">
+      <riderPublish configuration="Release" platform="Any CPU" produce_single_file="true" runtime="linux-x64" target_folder="$PROJECT_DIR$/Calculator/publish/linux" target_framework="net9.0" uuid_high="553650543686995327" uuid_low="-5744315027186700301" />
+      <method v="2" />
+    </configuration>
+    <configuration name="publish windows" type="DotNetFolderPublish" factoryName="Publish to folder">
+      <riderPublish configuration="Release" platform="Any CPU" produce_single_file="true" ready_to_run="true" runtime="win-x64" target_folder="$PROJECT_DIR$/Calculator/publish/windows" target_framework="net9.0" uuid_high="553650543686995327" uuid_low="-5744315027186700301" />
+      <method v="2" />
+    </configuration>
     <configuration name="Calculator" type="DotNetProject" factoryName=".NET Project">
-      <option name="EXE_PATH" value="" />
+      <option name="EXE_PATH" value="$PROJECT_DIR$/Calculator/bin/Debug/net9.0/Calculator" />
       <option name="PROGRAM_PARAMETERS" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Calculator/bin/Debug/net9.0" />
       <option name="PASS_PARENT_ENVS" value="1" />
       <option name="USE_EXTERNAL_CONSOLE" value="0" />
       <option name="ENV_FILE_PATHS" value="" />
@@ -76,11 +100,16 @@
       <option name="PROJECT_ARGUMENTS_TRACKING" value="1" />
       <option name="PROJECT_WORKING_DIRECTORY_TRACKING" value="1" />
       <option name="PROJECT_KIND" value="DotNetCore" />
-      <option name="PROJECT_TFM" value="" />
+      <option name="PROJECT_TFM" value="net9.0" />
       <method v="2">
         <option name="Build" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue=".NET Project.Calculator" />
+      <item itemvalue="Publish to folder.publish windows" />
+      <item itemvalue="Publish to folder.publish linux" />
+    </list>
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -92,6 +121,7 @@
       <workItem from="1746889830412" duration="4827000" />
       <workItem from="1746921512975" duration="15383000" />
       <workItem from="1746946219020" duration="9028000" />
+      <workItem from="1747027060049" duration="4323000" />
     </task>
     <task id="LOCAL-00001" summary="Initial Commit">
       <option name="closed" value="true" />
@@ -133,7 +163,31 @@
       <option name="project" value="LOCAL" />
       <updated>1746921750225</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Fixed addition parsing.">
+      <option name="closed" value="true" />
+      <created>1747014086169</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1747014086169</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Added ui.">
+      <option name="closed" value="true" />
+      <created>1747014102879</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1747014102879</updated>
+    </task>
+    <task id="LOCAL-00008" summary="avalonia.xml">
+      <option name="closed" value="true" />
+      <created>1747014116894</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1747014116894</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -146,7 +200,10 @@
     <MESSAGE value="Initial Commit" />
     <MESSAGE value="Added expressions" />
     <MESSAGE value="Added Tokeniser.cs and tests." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added Tokeniser.cs and tests." />
+    <MESSAGE value="Fixed addition parsing." />
+    <MESSAGE value="Added ui." />
+    <MESSAGE value="avalonia.xml" />
+    <option name="LAST_COMMIT_MESSAGE" value="avalonia.xml" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

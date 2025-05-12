@@ -3,6 +3,13 @@
   <component name="AvaloniaProject">
     <option name="projectPerEditor">
       <map>
+        <entry key="Calculator/App.axaml" value="Calculator/Calculator.csproj" />
+        <entry key="Calculator/Components/GridButton.axaml" value="Calculator/Calculator.csproj" />
+        <entry key="Calculator/Controls/ButtonGrid.axaml" value="Calculator/Calculator.csproj" />
+        <entry key="Calculator/Controls/GridButton.axaml" value="Calculator/Calculator.csproj" />
+        <entry key="Calculator/Controls/MyLabel.axaml" value="Calculator/Calculator.csproj" />
+        <entry key="Calculator/Controls/OutputWindow.axaml" value="Calculator/Calculator.csproj" />
+        <entry key="Calculator/Views/GridButton.axaml" value="Calculator/Calculator.csproj" />
         <entry key="Calculator/Views/MainWindow.axaml" value="Calculator/Calculator.csproj" />
       </map>
     </option>

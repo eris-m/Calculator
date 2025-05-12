@@ -1,0 +1,22 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:controls="using:Calculator.Controls">
+    <Design.PreviewWith>
+        <controls:GridButton />
+    </Design.PreviewWith>
+
+    <Style Selector="controls|GridButton">
+        <!-- Set Defaults -->
+        <Setter Property="Template">
+            <ControlTemplate>
+                <Button
+                    VerticalAlignment="Stretch"
+                    HorizontalAlignment="Stretch"
+                    Command="{TemplateBinding Command}"
+                    Content="{TemplateBinding Value}">
+                    <Button.CommandParameter><TemplateBinding Property="Value" /></Button.CommandParameter>
+                </Button>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+</Styles>
