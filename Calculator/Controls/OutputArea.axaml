@@ -4,10 +4,13 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="clr-namespace:Calculator.ViewModels"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="Calculator.Controls.OutputWindow"
+             x:Class="Calculator.Controls.OutputArea"
              x:DataType="vm:MainWindowViewModel">
     <StackPanel DockPanel.Dock="Right" VerticalAlignment="Stretch">
-        <TextBox Text="{Binding InputText}" />
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
+            <TextBox Text="{Binding InputText}" />
+            <Button Command="{Binding Backspace}">⌫</Button>
+        </StackPanel>
         <TextBlock>
             <Bold>= <Label Content="{Binding Output}" /></Bold>
         </TextBlock>

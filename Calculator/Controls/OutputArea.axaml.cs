@@ -4,9 +4,9 @@ using Avalonia.Markup.Xaml;
 
 namespace Calculator.Controls;
 
-public partial class OutputWindow : UserControl
+public partial class OutputArea : UserControl
 {
-    public OutputWindow()
+    public OutputArea()
     {
         InitializeComponent();
     }

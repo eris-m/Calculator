@@ -9,7 +9,10 @@
   <component name="ChangeListManager">
     <list default="true" id="fb6bf662-b01a-4a18-b34d-1853c827f5ab" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Calculator/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Calculator/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Calculator/Tokeniser.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Calculator/Tokeniser.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Calculator/Controls/OutputWindow.axaml" beforeDir="false" afterPath="$PROJECT_DIR$/Calculator/Controls/OutputArea.axaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Calculator/Controls/OutputWindow.axaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Calculator/Controls/OutputArea.axaml.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Calculator/ViewModels/MainWindowViewModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Calculator/ViewModels/MainWindowViewModel.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Calculator/Views/MainWindow.axaml" beforeDir="false" afterPath="$PROJECT_DIR$/Calculator/Views/MainWindow.axaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -109,7 +112,9 @@
       <workItem from="1746889830412" duration="4827000" />
       <workItem from="1746921512975" duration="15383000" />
       <workItem from="1746946219020" duration="9028000" />
-      <workItem from="1747027060049" duration="4998000" />
+      <workItem from="1747027060049" duration="5670000" />
+      <workItem from="1747042701588" duration="2719000" />
+      <workItem from="1747048312892" duration="1603000" />
     </task>
     <task id="LOCAL-00001" summary="Initial Commit">
       <option name="closed" value="true" />
@@ -183,7 +188,15 @@
       <option name="project" value="LOCAL" />
       <updated>1747033539000</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Changed parser to work with buttons.">
+      <option name="closed" value="true" />
+      <created>1747034100178</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1747034100179</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -200,7 +213,8 @@
     <MESSAGE value="Added ui." />
     <MESSAGE value="avalonia.xml" />
     <MESSAGE value="Added buttons" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added buttons" />
+    <MESSAGE value="Changed parser to work with buttons." />
+    <option name="LAST_COMMIT_MESSAGE" value="Changed parser to work with buttons." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

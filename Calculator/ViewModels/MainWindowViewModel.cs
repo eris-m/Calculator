@@ -32,6 +32,16 @@ public partial class MainWindowViewModel : ViewModelBase
     {
         InputText += button;
     }
+
+    [RelayCommand]
+    public void Backspace()
+    {
+        if (InputText.Length == 0)
+            return;
+        
+        InputText = InputText[..^1];
+        //TODO
+    }
     
     private void RunCalculation()
     {
