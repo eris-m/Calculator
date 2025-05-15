@@ -60,7 +60,7 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
-  <component name="RunManager" selected="Publish to folder.publish linux">
+  <component name="RunManager" selected=".NET Project.Calculator">
     <configuration name="publish linux" type="DotNetFolderPublish" factoryName="Publish to folder">
       <riderPublish configuration="Release" platform="Any CPU" produce_single_file="true" ready_to_run="true" runtime="linux-x64" self_contained="true" target_folder="$PROJECT_DIR$/Calculator/publish/linux" target_framework="net9.0" trim_unused_assemblies="true" uuid_high="553650543686995327" uuid_low="-5744315027186700301" />
       <method v="2" />
