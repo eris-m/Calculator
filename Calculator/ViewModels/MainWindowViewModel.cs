@@ -24,7 +24,7 @@ public partial class MainWindowViewModel : ViewModelBase
     private string _inputText = "";
 
     [ObservableProperty]
-    private float _output = 0.0f;
+    private double _output = 0.0d;
 
     public MainWindowViewModel()
     {
@@ -34,7 +34,7 @@ public partial class MainWindowViewModel : ViewModelBase
     [RelayCommand]
     public void OnEquals()
     {
-        History.Add($"{InputText} = {_output}");
+        History.Add($"{InputText} = {Output}");
     }
     
     [RelayCommand]
@@ -59,7 +59,7 @@ public partial class MainWindowViewModel : ViewModelBase
 
         if (!parsed.WasSuccessful)
         {
-            Output = float.NaN;
+            Output = double.NaN;
         }
         else
         {

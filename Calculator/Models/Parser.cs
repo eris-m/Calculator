@@ -84,13 +84,13 @@ public static class Parser
             );
     }
 
-    private static float CreateFloat(IOption<char> negative, string whole, IOption<string> fraction)
+    private static double CreateFloat(IOption<char> negative, string whole, IOption<string> fraction)
     {
         var negativeMultiplier = negative.IsDefined ? -1f : 1f;
         var fractionS = fraction.IsEmpty ? "0" : fraction.Get();
         
-        var wholeF = float.Parse(whole);
-        var fractionF = float.Parse(fractionS);
+        var wholeF = double.Parse(whole);
+        var fractionF = double.Parse(fractionS);
 
         var digits = fractionS.Length;
         var fractionalMultiplier = MathF.Pow(10f, -digits);

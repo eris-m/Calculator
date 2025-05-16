@@ -12,26 +12,26 @@ public interface IExpression
     /// <summary>
     /// Evaluates the expression into a float.
     /// </summary>
-    float Evaluate();
+    double Evaluate();
 }
 
 /// <summary>
 /// A simple number expression.
 /// </summary>
 /// <param name="value">The value of the expression.</param>
-public class FloatExpression(float value) : IExpression
+public class FloatExpression(double value) : IExpression
 {
     /// <summary>
     /// The floating point value of the expression.
     /// </summary>
-    public float Value { get; set; } = value;
+    public double Value { get; set; } = value;
     
     public string AsString()
     {
         return Value.ToString();
     }
 
-    public float Evaluate()
+    public double Evaluate()
     {
         return Value;
     }
@@ -87,7 +87,7 @@ public class BinaryOperationExpression : IExpression
 
     public string AsString()
     {
-        char operatorChar = Operator switch
+        var operatorChar = Operator switch
         {
             BinaryOperator.Add => '+',
             BinaryOperator.Subtract => '-',
@@ -99,10 +99,10 @@ public class BinaryOperationExpression : IExpression
         return $"{Left.AsString()} {operatorChar} {Right.AsString()}";
     }
 
-    public float Evaluate()
+    public double Evaluate()
     {
-        float left = Left.Evaluate();
-        float right = Right.Evaluate();
+        var left = Left.Evaluate();
+        var right = Right.Evaluate();
 
         return Operator switch
         {

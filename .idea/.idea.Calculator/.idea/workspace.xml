@@ -9,6 +9,9 @@
   <component name="ChangeListManager">
     <list default="true" id="fb6bf662-b01a-4a18-b34d-1853c827f5ab" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Calculator/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Calculator/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Calculator/Models/Expression.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Calculator/Models/Expression.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Calculator/Models/Parser.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Calculator/Models/Parser.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Calculator/ViewModels/MainWindowViewModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Calculator/ViewModels/MainWindowViewModel.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,27 +43,27 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;.NET Project.Calculator.executor&quot;: &quot;Debug&quot;,
-    &quot;5537f158-d277-4937-957d-9a88b4aba825.executor&quot;: &quot;Run&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;Publish to folder.publish linux.executor&quot;: &quot;Run&quot;,
-    &quot;Publish to folder.publish windows.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/mnt/drive3/proj/Calculator/Calculator/publish/linux&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    ".NET Project.Calculator.executor": "Run",
+    "5537f158-d277-4937-957d-9a88b4aba825.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "Publish to folder.publish linux.executor": "Run",
+    "Publish to folder.publish windows.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "/mnt/drive3/proj/Calculator/Calculator/publish/linux",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.lookFeel",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
-  <component name="RunManager" selected="Publish to folder.publish windows">
+}]]></component>
+  <component name="RunManager" selected=".NET Project.Calculator">
     <configuration name="publish linux" type="DotNetFolderPublish" factoryName="Publish to folder">
       <riderPublish configuration="Release" platform="Any CPU" produce_single_file="true" ready_to_run="true" runtime="linux-x64" self_contained="true" target_folder="$PROJECT_DIR$/Calculator/publish/linux" target_framework="net9.0" uuid_high="553650543686995327" uuid_low="-5744315027186700301" />
       <method v="2" />
@@ -115,6 +118,8 @@
       <workItem from="1747058965927" duration="1456000" />
       <workItem from="1747061716051" duration="1422000" />
       <workItem from="1747352612107" duration="4827000" />
+      <workItem from="1747358860621" duration="871000" />
+      <workItem from="1747388327579" duration="302000" />
     </task>
     <task id="LOCAL-00001" summary="Initial Commit">
       <option name="closed" value="true" />
@@ -236,7 +241,15 @@
       <option name="project" value="LOCAL" />
       <updated>1747356312382</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="Added documentation to Parser.Cs and changed the name of ParseNext to ParseExpression.">
+      <option name="closed" value="true" />
+      <created>1747358988700</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1747358988700</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -258,7 +271,8 @@
     <MESSAGE value="Added history!" />
     <MESSAGE value="Moved Parser.cs and Tokeniser.cs" />
     <MESSAGE value="Reworked parsing." />
-    <option name="LAST_COMMIT_MESSAGE" value="Reworked parsing." />
+    <MESSAGE value="Added documentation to Parser.Cs and changed the name of ParseNext to ParseExpression." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added documentation to Parser.Cs and changed the name of ParseNext to ParseExpression." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
