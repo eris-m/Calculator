@@ -55,16 +55,15 @@ public partial class MainWindowViewModel : ViewModelBase
     
     private void RunCalculation()
     {
-        var tokens = Tokeniser.TokeniseString(InputText);
-        var parsed = Parser.ParseNext(out var output, tokens.ToArray().AsSpan());
+        var parsed = Parser.ParseNext(InputText);
 
-        if (!parsed)
+        if (!parsed.WasSuccessful)
         {
             Output = float.NaN;
         }
         else
         {
-            Output = output.Expression.Evaluate();
+            Output = parsed.Value.Evaluate();
         }
     }
 }

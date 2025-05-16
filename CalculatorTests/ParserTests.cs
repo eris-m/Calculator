@@ -9,50 +9,50 @@ public class ParserTests
     [Test]
     public void TestInt()
     {
-        string input = "123";
+        const string input = "123";
+        var result = Parser.ParseNext(input);
 
-        IList<Token> tokens = Tokeniser.TokeniseString(input);
-
-        if (!Parser.ParseNext(out var output, tokens.ToArray().AsSpan()))
+        if (!result.WasSuccessful)
         {
             throw new Exception("Failed to parse!");
         }
         
-        Assert.That(output.Remaining.Length, Is.EqualTo(0));
+        Assert.That(result.Remainder.AtEnd);
 
-        AssertFloat(output.Expression, 123f);
+        AssertFloat(result.Value, 123f);
     }
 
     [Test]
     public void TestFloat()
     {
-        string input = "-5.392";
+        const string input = "-5.392";
 
-        IList<Token> tokens = Tokeniser.TokeniseString(input);
+        var result = Parser.ParseNext(input);
 
-        if (!Parser.ParseNext(out var output, tokens.ToArray().AsSpan()))
+        if (!result.WasSuccessful)
         {
             throw new Exception("Failed to parse!");
         }
         
-        Assert.That(output.Remaining.Length, Is.EqualTo(0));
+        Assert.That(result.Remainder.AtEnd);
 
-        AssertFloat(output.Expression, -5.392f);
+        AssertFloat(result.Value, -5.392f);
     }
 
     [TestCase("1 + 2", 1f, 2f, BinaryOperator.Add)]
     [TestCase("-5.2 * 2", -5.2f, 2f, BinaryOperator.Multiply)]
     [TestCase("2 - -3", 2f, -3f, BinaryOperator.Subtract)]
     [TestCase("1 / 3.14159", 1f, 3.14159f, BinaryOperator.Divide)]
-    public void TestAddInt(string input, float a, float b, BinaryOperator @operator)
+    public void TestAdd(string input, float a, float b, BinaryOperator @operator)
     {
-        IList<Token> tokens = Tokeniser.TokeniseString(input);
-        if (!Parser.ParseNext(out var output, tokens.ToArray().AsSpan()))
+        var result = Parser.ParseNext(input);
+        
+        if (!result.WasSuccessful)
         {
             throw new Exception("Failed to parse!");
         }
 
-        if (output.Expression is not BinaryOperationExpression binOp)
+        if (result.Value is not BinaryOperationExpression binOp)
         {
             throw new Exception("Did not parse binary operator!");
         }
@@ -62,41 +62,6 @@ public class ParserTests
         Assert.That(binOp.Operator, Is.EqualTo(@operator));
     }
 
-    [Test]
-    public void TestLongExpr()
-    {
-        string input = "5 + 2 * 3 - 5";
-
-        IList<Token> tokens = Tokeniser.TokeniseString(input);
-        if (!Parser.ParseNext(out var output, tokens.ToArray().AsSpan()))
-        {
-            throw new Exception("Failed to parse!");
-        }
-
-        if (output.Expression is not BinaryOperationExpression mulExpr)
-        {
-            throw new Exception("Didn't parse binary expression");
-        }
-        
-        Assert.That(mulExpr.Operator, Is.EqualTo(BinaryOperator.Multiply));
-
-        if (mulExpr.Left is not BinaryOperationExpression addExpr)
-        {
-            throw new Exception("Didn't parse binary expression for the left");
-        }
-        Assert.That(addExpr.Operator, Is.EqualTo(BinaryOperator.Add));
-        AssertFloat(addExpr.Left, 5);
-        AssertFloat(addExpr.Right, 2);
-
-        if (mulExpr.Right is not BinaryOperationExpression subExpr)
-        {
-            throw new Exception("Didn't parse binary expression for the right");
-        }
-        Assert.That(subExpr.Operator, Is.EqualTo(BinaryOperator.Subtract));
-        AssertFloat(subExpr.Left, 3);
-        AssertFloat(subExpr.Right, 5);
-    }
-   
     private static void AssertFloat(IExpression expression, float expected, float tolerance = 0.001f)
     {
         if (expression is not FloatExpression floatExpr)

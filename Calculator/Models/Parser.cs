@@ -1,26 +1,27 @@
 using System;
 using Calculator.Models;
+using Sprache;
 using BinaryOperator = Calculator.Models.BinaryOperationExpression.BinaryOperator;
 
 namespace Calculator;
 
 // TODO: Error handling!!!!
 
-/// <summary>
-///     The output from a parser.
-/// </summary>
-public ref struct ParserOutput
-{
-    /// <summary>
-    ///     The amount of tokens consumed by the parser.
-    /// </summary>
-    public ReadOnlySpan<Token> Remaining { get; set; }
-
-    /// <summary>
-    ///     The expression parsed.
-    /// </summary>
-    public IExpression Expression { get; set; }
-}
+// /// <summary>
+// ///     The output from a parser.
+// /// </summary>
+// public ref struct ParserOutput
+// {
+//     /// <summary>
+//     ///     The amount of tokens consumed by the parser.
+//     /// </summary>
+//     public ReadOnlySpan<Token> Remaining { get; set; }
+//
+//     /// <summary>
+//     ///     The expression parsed.
+//     /// </summary>
+//     public IExpression Expression { get; set; }
+// }
 
 /// <summary>
 ///     Static class containing methods to parse expressions.
@@ -28,205 +29,70 @@ public ref struct ParserOutput
 public class Parser
 {
     /// <summary>
-    ///     Parses the next expression in the span of tokens.
+    ///     Parses the next expression in the provided string.
     /// </summary>
-    /// <param name="output">The output of the parser.</param>
-    /// <param name="tokens">The input tokens to be parsed.</param>
-    /// <returns><c>true</c> if parsing was successful, <c>false</c> otherwise</returns>
-    public static bool ParseNext(out ParserOutput output, ReadOnlySpan<Token> tokens)
+    /// <param name="input">The input string to be parsed.</param>
+    public static IResult<IExpression> ParseNext(string input)
     {
-        if (tokens.Length <= 0)
-        {
-            output = new ParserOutput();
-            return false;
-        }
-
-        if (ParseMathsExpression(out output, tokens)) return true;
-
-        return false;
+        return AddExpressionParser()(new Input(input));
     }
 
-    /// <summary>
-    ///     Parses a single float or integer.
-    /// </summary>
-    /// <param name="output">The output of the parser.</param>
-    /// <param name="tokens">The input tokens.</param>
-    /// <returns><c>true</c> if parsing was successful, <c>false</c> otherwise.</returns>
-    public static bool ParseFloat(out ParserOutput output, ReadOnlySpan<Token> tokens)
+    private static Parser<IExpression> FloatParser()
     {
-        if (tokens.Length <= 0)
-        {
-            output = new ParserOutput();
-            return false;
-        }
-
-
-        var negative = ExpectToken(TokenKind.Sub, tokens, out tokens);
-        var negativeMultiplier = negative ? -1f : 1f;
-
-        if (!ParseDigit(out var whole, tokens, out tokens))
-        {
-            output = new ParserOutput();
-            return false;
-        }
-
-        if (!ExpectToken(TokenKind.Period, tokens, out tokens))
-        {
-            output = new ParserOutput
-            {
-                Expression = new FloatExpression(negativeMultiplier * whole),
-                Remaining = tokens
-            };
-            return true;
-        }
-
-
-        if (!ParseDigit(out var fraction, tokens, out var remaining))
-        {
-            output = new ParserOutput
-            {
-                Expression = new FloatExpression(negativeMultiplier * whole),
-                Remaining = tokens
-            };
-            return true;
-        }
-
-        var fractionMultiplier = 1f / float.Pow(10f, tokens[0].Length);
-
-        output = new ParserOutput
-        {
-            Expression = new FloatExpression(negativeMultiplier * (whole + fraction * fractionMultiplier)),
-            Remaining = remaining
-        };
-        return true;
+        return
+            from negative in Parse.Char('-').Optional()
+            from first in Parse.Number
+            from period in Parse.Char('.').Optional()
+            from second in Parse.Number.Optional()
+            select new FloatExpression(CreateFloat(negative, first, second));
+        // return Parse.Number.Select(str => new FloatExpression(float.Parse(str)));
     }
 
-    private static bool ParseMathsExpression(out ParserOutput output, ReadOnlySpan<Token> tokens)
+    private static Parser<IExpression> AddExpressionParser()
     {
-        if (tokens.Length == 0)
-        {
-            output = new ParserOutput();
-            return false;
-        }
-
-        if (!ParseAdditionTerm(out var firstFloat, tokens))
-        {
-            output = new ParserOutput();
-            return false;
-        }
-
-        tokens = SkipSpaces(firstFloat.Remaining);
-
-        // ew.
-        // TODO: Replace this.
-        var @operator = BinaryOperator.Multiply;
-        if (!ExpectToken(TokenKind.Mul, tokens, out tokens))
-        {
-            if (!ExpectToken(TokenKind.Div, tokens, out tokens))
+        return Parse.ChainOperator(
+            Parse.Chars('+', '-').Token(),
+            MulExpressionParser().Token(),
+            (op, l, r) =>
             {
-                output = firstFloat;
-                return true;
+                return op switch
+                {
+                    '+' => new BinaryOperationExpression(BinaryOperator.Add, l, r),
+                    '-' => new BinaryOperationExpression(BinaryOperator.Subtract, l, r),
+                    _ => throw new Exception("Invalid parsing state!")
+                };
             }
-
-            @operator = BinaryOperator.Divide;
-        }
-
-        tokens = SkipSpaces(tokens);
-        if (!ParseNext(out var secondFloat, tokens))
-        {
-            output = new ParserOutput();
-            return false;
-        }
-
-        output = new ParserOutput
-        {
-            Expression = new BinaryOperationExpression(@operator, firstFloat.Expression, secondFloat.Expression),
-            Remaining = secondFloat.Remaining
-        };
-        return true;
+        );
     }
 
-    private static bool ParseAdditionTerm(out ParserOutput output, ReadOnlySpan<Token> tokens)
+    private static Parser<IExpression> MulExpressionParser()
     {
-        if (tokens.Length == 0)
-        {
-            output = new ParserOutput();
-            return false;
-        }
-
-        if (!ParseFloat(out var firstFloat, tokens))
-        {
-            output = new ParserOutput();
-            return false;
-        }
-
-        tokens = SkipSpaces(firstFloat.Remaining);
-
-        var @operator = BinaryOperator.Add;
-        // ew.
-        // TODO: Replace this.
-        if (!ExpectToken(TokenKind.Add, tokens, out tokens))
-        {
-            if (!ExpectToken(TokenKind.Sub, tokens, out tokens))
-            {
-                output = firstFloat;
-                return true;
-            }
-
-            @operator = BinaryOperator.Subtract;
-        }
-
-        tokens = SkipSpaces(tokens);
-
-        if (!ParseNext(out var secondFloat, tokens))
-        {
-            output = new ParserOutput();
-            return false;
-        }
-
-        output = new ParserOutput
-        {
-            Expression = new BinaryOperationExpression(@operator, firstFloat.Expression, secondFloat.Expression),
-            Remaining = secondFloat.Remaining
-        };
-
-        return true;
+        return Parse.ChainOperator(
+            Parse.Chars('*', '×', '/', '÷').Token(), 
+                FloatParser().Token(),
+                (op, l, r) =>
+                {
+                    return op switch
+                    {
+                        '*' or '×' => new BinaryOperationExpression(BinaryOperator.Multiply, l, r),
+                        '/' or '÷' => new BinaryOperationExpression(BinaryOperator.Divide, l, r),
+                        _ => throw new Exception("Invalid parsing state!")
+                    };
+                }
+            );
     }
 
-    private static ReadOnlySpan<Token> SkipSpaces(ReadOnlySpan<Token> tokens)
+    private static float CreateFloat(IOption<char> negative, string whole, IOption<string> fraction)
     {
-        int i;
-        for (i = 0; i < tokens.Length; i++)
-            if (tokens[i].TokenKind != TokenKind.Space)
-                break;
+        var negativeMultiplier = negative.IsDefined ? -1f : 1f;
+        var fractionS = fraction.IsEmpty ? "0" : fraction.Get();
+        
+        var wholeF = float.Parse(whole);
+        var fractionF = float.Parse(fractionS);
 
-        return tokens[i..];
-    }
-
-    private static bool ExpectToken(TokenKind expected, ReadOnlySpan<Token> tokens, out ReadOnlySpan<Token> outTokens)
-    {
-        if (tokens.Length == 0)
-        {
-            outTokens = tokens;
-            return false;
-        }
-
-        var eq = tokens[0].TokenKind == expected;
-
-        outTokens = tokens[(eq ? 1 : 0)..];
-        return eq;
-    }
-
-    private static bool ParseDigit(out uint output, ReadOnlySpan<Token> tokens, out ReadOnlySpan<Token> outTokens)
-    {
-        if (tokens.Length == 0 || tokens[0].TokenKind != TokenKind.Digit)
-        {
-            output = 0;
-            outTokens = tokens;
-            return false;
-        }
-
-        outTokens = tokens[1..];
-        return uint.TryParse(tokens[0].Content, out output);
+        var digits = fractionS.Length;
+        var fractionalMultiplier = MathF.Pow(10f, -digits);
+        
+        return negativeMultiplier * (wholeF + fractionalMultiplier * fractionF);
     }
 }
