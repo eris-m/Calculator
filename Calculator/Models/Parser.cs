@@ -5,34 +5,36 @@ using BinaryOperator = Calculator.Models.BinaryOperationExpression.BinaryOperato
 
 namespace Calculator;
 
-// TODO: Error handling!!!!
-
-// /// <summary>
-// ///     The output from a parser.
-// /// </summary>
-// public ref struct ParserOutput
-// {
-//     /// <summary>
-//     ///     The amount of tokens consumed by the parser.
-//     /// </summary>
-//     public ReadOnlySpan<Token> Remaining { get; set; }
-//
-//     /// <summary>
-//     ///     The expression parsed.
-//     /// </summary>
-//     public IExpression Expression { get; set; }
-// }
-
 /// <summary>
-///     Static class containing methods to parse expressions.
+///     Static class to parse expressions out of strings.
 /// </summary>
-public class Parser
+/// <remarks>
+/// To parse an expression, call <c cref="ParseExpression">ParseExpression</c>.
+/// 
+/// For example:
+/// <example>
+/// <code>
+/// const string myExpression = "1 + 2 + 3 * 4";
+/// IResult&lt;IExpression&gt; result = Parser.ParseExpression(myExpression);
+/// 
+/// // Check that it parsed
+/// if (!result.WasSuccessful)
+/// {
+///     // handle error.
+/// }
+/// 
+/// IExpression expression = result.Value;
+/// </code>
+/// </example>
+/// </remarks>
+/// <see cref="ParseExpression"/>
+public static class Parser
 {
     /// <summary>
-    ///     Parses the next expression in the provided string.
+    ///     Parses the expression in the provided string.
     /// </summary>
     /// <param name="input">The input string to be parsed.</param>
-    public static IResult<IExpression> ParseNext(string input)
+    public static IResult<IExpression> ParseExpression(string input)
     {
         return AddExpressionParser()(new Input(input));
     }

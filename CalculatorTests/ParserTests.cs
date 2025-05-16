@@ -10,7 +10,7 @@ public class ParserTests
     public void TestInt()
     {
         const string input = "123";
-        var result = Parser.ParseNext(input);
+        var result = Parser.ParseExpression(input);
 
         if (!result.WasSuccessful)
         {
@@ -27,7 +27,7 @@ public class ParserTests
     {
         const string input = "-5.392";
 
-        var result = Parser.ParseNext(input);
+        var result = Parser.ParseExpression(input);
 
         if (!result.WasSuccessful)
         {
@@ -45,7 +45,7 @@ public class ParserTests
     [TestCase("1 / 3.14159", 1f, 3.14159f, BinaryOperator.Divide)]
     public void TestAdd(string input, float a, float b, BinaryOperator @operator)
     {
-        var result = Parser.ParseNext(input);
+        var result = Parser.ParseExpression(input);
         
         if (!result.WasSuccessful)
         {

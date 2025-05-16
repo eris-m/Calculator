@@ -55,7 +55,7 @@ public partial class MainWindowViewModel : ViewModelBase
     
     private void RunCalculation()
     {
-        var parsed = Parser.ParseNext(InputText);
+        var parsed = Parser.ParseExpression(InputText);
 
         if (!parsed.WasSuccessful)
         {
