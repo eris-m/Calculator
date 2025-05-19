@@ -13,7 +13,7 @@ public class ParserTests
 
         if (!result.WasSuccessful)
         {
-            throw new Exception("Failed to parse!");
+            ParserError(input);
         }
         
         Assert.That(result.Remainder.AtEnd);
@@ -30,7 +30,7 @@ public class ParserTests
 
         if (!result.WasSuccessful)
         {
-            throw new Exception("Failed to parse!");
+            ParserError(input);
         }
         
         Assert.That(result.Remainder.AtEnd);
@@ -48,7 +48,7 @@ public class ParserTests
         
         if (!result.WasSuccessful)
         {
-            throw new Exception("Failed to parse!");
+            ParserError(input);
         }
 
         if (result.Value is not BinaryOperationExpression binOp)
@@ -69,12 +69,17 @@ public class ParserTests
         var result = Parser.ParseExpression(input);
         if (!result.WasSuccessful)
         {
-            throw new Exception("Failed to parse!");
+            ParserError(input);
         }
 
         var eval = result.Value.Evaluate();
 
         Assert.That(eval, Is.EqualTo(expected).Within(0.005f));
+    }
+
+    private static void ParserError(string expression)
+    {
+        throw new Exception($"Failed to parse expression: \"{expression}\"");
     }
 
     private static void AssertFloat(IExpression expression, float expected, float tolerance = 0.001f)
