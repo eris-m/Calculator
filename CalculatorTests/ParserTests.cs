@@ -1,4 +1,3 @@
-using Calculator;
 using Calculator.Models;
 using BinaryOperator = Calculator.Models.BinaryOperationExpression.BinaryOperator;
 
@@ -60,6 +59,22 @@ public class ParserTests
         AssertFloat(binOp.Left, a);
         AssertFloat(binOp.Right, b);
         Assert.That(binOp.Operator, Is.EqualTo(@operator));
+    }
+
+    [TestCase("1 + 2*3", 7f)]
+    [TestCase("(1 + 2)*3", 9f)]
+    [TestCase("1 + 2 * 3 + 4", 11f)]
+    public void TestExpression(string input, float expected)
+    {
+        var result = Parser.ParseExpression(input);
+        if (!result.WasSuccessful)
+        {
+            throw new Exception("Failed to parse!");
+        }
+
+        var eval = result.Value.Evaluate();
+
+        Assert.That(eval, Is.EqualTo(expected).Within(0.005f));
     }
 
     private static void AssertFloat(IExpression expression, float expected, float tolerance = 0.001f)

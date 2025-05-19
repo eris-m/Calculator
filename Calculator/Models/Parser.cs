@@ -1,9 +1,9 @@
 using System;
-using Calculator.Models;
+using Avalonia.Utilities;
 using Sprache;
 using BinaryOperator = Calculator.Models.BinaryOperationExpression.BinaryOperator;
 
-namespace Calculator;
+namespace Calculator.Models;
 
 /// <summary>
 ///     Static class to parse expressions out of strings.
@@ -36,17 +36,30 @@ public static class Parser
     /// <param name="input">The input string to be parsed.</param>
     public static IResult<IExpression> ParseExpression(string input)
     {
-        return AddExpressionParser()(new Input(input));
+        return ExpressionParser()(new Input(input));
     }
 
-    private static Parser<IExpression> FloatParser()
+    private static Parser<IExpression> ExpressionParser()
     {
-        return
+        return AddExpressionParser();
+    }
+
+    private static Parser<IExpression> FloatTermParser()
+    {
+        var floatParse =
             from negative in Parse.Char('-').Optional()
             from first in Parse.Number
             from period in Parse.Char('.').Optional()
             from second in Parse.Number.Optional()
             select new FloatExpression(CreateFloat(negative, first, second));
+
+        var parenParse =
+            from open in Parse.Char('(')
+            from body in ExpressionParser()
+            from close in Parse.Char(')')
+            select body;
+
+        return parenParse.Or(floatParse);
         // return Parse.Number.Select(str => new FloatExpression(float.Parse(str)));
     }
 
@@ -71,7 +84,7 @@ public static class Parser
     {
         return Parse.ChainOperator(
             Parse.Chars('*', '×', '/', '÷').Token(), 
-                FloatParser().Token(),
+                FloatTermParser().Token(),
                 (op, l, r) =>
                 {
                     return op switch
