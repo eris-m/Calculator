@@ -40,6 +40,8 @@
 
         <!-- Row 3  -->
         <controls:GridButton Grid.Row="3" Grid.Column="0" Value="0" Command="{Binding OnButtonClick}" />
+		<controls:GridButton Grid.Row="3" Grid.Column="1" Value="(" Command="{Binding OnButtonClick}" />
+		<controls:GridButton Grid.Row="3" Grid.Column="2" Value=")" Command="{Binding OnButtonClick}" />
         <controls:GridButton Grid.Row="3" Grid.Column="3" Value="÷" Command="{Binding OnButtonClick}" />
 
         <!-- Equals Row  -->
