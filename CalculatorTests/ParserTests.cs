@@ -66,13 +66,15 @@ public class ParserTests
     [TestCase("1 + 2 * 3 + 4", 11f)]
     public void TestExpression(string input, float expected)
     {
+        var executionCtx = new Calculator.Models.ExecutionContext();
+
         var result = Parser.ParseExpression(input);
         if (!result.WasSuccessful)
         {
             throw new Exception("Failed to parse!");
         }
 
-        var eval = result.Value.Evaluate();
+        var eval = result.Value.Evaluate(executionCtx);
 
         Assert.That(eval, Is.EqualTo(expected).Within(0.005f));
     }
