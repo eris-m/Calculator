@@ -84,6 +84,20 @@ public static class Parser
             );
     }
 
+    private static Parser<IExpression> ParseFunction() =>
+        from name in IdentifierParser()
+        from open in Parse.Char('(')
+        from exprs in Parse.ChainOperator(Parse.Char(','), ExpressionParser(), (op, l, r) => l)
+        from close in Parse.Char(')')
+        select exprs; //TODO
+    
+
+    private static Parser<IExpression> IdentifierParser()
+    {
+        throw new NotImplementedException();
+        //return Parse.Letter.Many();
+    }
+
     private static Parser<IExpression> FloatParser() => 
         from negative in Parse.Char('-').Optional()
         from first in Parse.Number
