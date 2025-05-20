@@ -4,17 +4,22 @@ using System.Linq;
 
 namespace Calculator.Models;
 
+/// <summary>
+/// Interface for all expressions.
+/// </summary>
 public interface IExpression
 {
     /// <summary>
     /// Similar to <c>ToString</c> but is meant for UI representation.
     /// </summary>
+    // Not really used
     string AsString();
 
     /// <summary>
-    /// Evaluates the expression into a float.
+    /// Evaluates the expression into a double.
     /// </summary>
-    double Evaluate(ExecutionContext context);
+    /// <param name="context">The context to evaluate the function in.</param>
+    double Evaluate(EvaluationContext context);
 }
 
 /// <summary>
@@ -33,7 +38,7 @@ public class FloatExpression(double value) : IExpression
         return Value.ToString();
     }
 
-    public double Evaluate(ExecutionContext context)
+    public double Evaluate(EvaluationContext context)
     {
         return Value;
     }
@@ -101,7 +106,7 @@ public class BinaryOperationExpression : IExpression
         return $"{Left.AsString()} {operatorChar} {Right.AsString()}";
     }
 
-    public double Evaluate(ExecutionContext context)
+    public double Evaluate(EvaluationContext context)
     {
         var left = Left.Evaluate(context);
         var right = Right.Evaluate(context);
@@ -117,9 +122,20 @@ public class BinaryOperationExpression : IExpression
     }
 }
 
+/// <summary>
+/// An expression representing a function call.
+/// </summary>
+/// <param name="name">The name of the function.</param>
+/// <param name="arguments">The arguments passed to the function.</param>
 public class FunctionExpression(string name, IList<IExpression> arguments) : IExpression
 {
+    /// <summary>
+    /// The name of the function.
+    /// </summary>
     public string Name { get; set; } = name;
+    /// <summary>
+    /// Arguments passed to the function.
+    /// </summary>
     public IList<IExpression> Arguments { get; set; } = arguments;
 
     public string AsString()
@@ -128,7 +144,7 @@ public class FunctionExpression(string name, IList<IExpression> arguments) : IEx
         return $"{Name}({argList})";
     }
 
-    public double Evaluate(ExecutionContext ctx)
+    public double Evaluate(EvaluationContext ctx)
     {
         var fun = ctx.Functions.GetFunction(Name);
         if (fun == null)

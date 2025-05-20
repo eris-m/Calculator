@@ -27,7 +27,7 @@ public partial class MainWindowViewModel : ViewModelBase
     [ObservableProperty]
     private double _output = 0.0d;
 
-    private ExecutionContext _executionContext = new();
+    private EvaluationContext _evaluationContext = new();
 
     public MainWindowViewModel()
     {
@@ -66,7 +66,7 @@ public partial class MainWindowViewModel : ViewModelBase
         }
         else
         {
-            Output = parsed.Value.Evaluate(_executionContext);
+            Output = parsed.Value.Evaluate(_evaluationContext);
         }
     }
 }
