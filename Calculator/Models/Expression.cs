@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Calculator.Models;
 
@@ -112,5 +114,28 @@ public class BinaryOperationExpression : IExpression
             BinaryOperator.Divide => left / right,
             _ => throw new ArgumentOutOfRangeException()
         };
+    }
+}
+
+public class FunctionExpression(string name, IList<IExpression> arguments) : IExpression
+{
+    public string Name { get; set; } = name;
+    public IList<IExpression> Arguments { get; set; } = arguments;
+
+    public string AsString()
+    {
+        var argList = Arguments.Select(e => e.AsString());
+        return $"{Name}({argList})";
+    }
+
+    public double Evaluate(ExecutionContext ctx)
+    {
+        var fun = ctx.Functions.GetFunction(Name);
+        if (fun == null)
+            return float.NaN;
+
+        var args = Arguments.Select(e => e.Evaluate(ctx)).ToArray();
+
+        return fun(args);
     }
 }
