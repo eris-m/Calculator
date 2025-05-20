@@ -41,15 +41,10 @@ public static class Parser
         return ExpressionParser()(new Input(input));
     }
 
+    #region Terms
     private static Parser<IExpression> ExpressionParser()
     {
         return AddExpressionParser();
-    }
-
-    private static Parser<IExpression> TermParser()
-    {
-        return FunctionParser().Or(ParenthesisParser().Or(FloatParser()));
-        // return Parse.Number.Select(str => new FloatExpression(float.Parse(str)));
     }
 
     private static Parser<IExpression> AddExpressionParser()
@@ -85,7 +80,15 @@ public static class Parser
                 }
             );
     }
+    #endregion
 
+    #region Functions
+    private static Parser<IExpression> TermParser()
+    {
+        return FunctionParser().Or(ParenthesisParser().Or(FloatParser()));
+        // return Parse.Number.Select(str => new FloatExpression(float.Parse(str)));
+    }
+    
     private static Parser<IExpression> FunctionParser() =>
         from name in IdentifierParser()
         from open in Parse.Char('(')
@@ -102,6 +105,7 @@ public static class Parser
         //throw new NotImplementedException();
         return Parse.Letter.AtLeastOnce().Select(x => new string(x.ToArray()));
     }
+    #endregion
 
     private static Parser<IExpression> FloatParser() => 
         from negative in Parse.Char('-').Optional()
