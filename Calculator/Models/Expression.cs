@@ -12,7 +12,7 @@ public interface IExpression
     /// <summary>
     /// Evaluates the expression into a float.
     /// </summary>
-    double Evaluate();
+    double Evaluate(ExecutionContext context);
 }
 
 /// <summary>
@@ -31,7 +31,7 @@ public class FloatExpression(double value) : IExpression
         return Value.ToString();
     }
 
-    public double Evaluate()
+    public double Evaluate(ExecutionContext context)
     {
         return Value;
     }
@@ -99,10 +99,10 @@ public class BinaryOperationExpression : IExpression
         return $"{Left.AsString()} {operatorChar} {Right.AsString()}";
     }
 
-    public double Evaluate()
+    public double Evaluate(ExecutionContext context)
     {
-        var left = Left.Evaluate();
-        var right = Right.Evaluate();
+        var left = Left.Evaluate(context);
+        var right = Right.Evaluate(context);
 
         return Operator switch
         {
