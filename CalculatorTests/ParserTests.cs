@@ -83,7 +83,7 @@ public class ParserTests
     [TestCase("1 + 2 * 3 + 4", 11f)]
     public void TestExpression(string input, float expected)
     {
-        var executionCtx = new Calculator.Models.ExecutionContext();
+        var executionCtx = new Calculator.Models.EvaluationContext();
 
         var result = Parser.ParseExpression(input);
         if (!result.WasSuccessful)
