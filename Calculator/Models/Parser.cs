@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using Avalonia.Utilities;
 using Sprache;
 using BinaryOperator = Calculator.Models.BinaryOperationExpression.BinaryOperator;
@@ -46,7 +48,7 @@ public static class Parser
 
     private static Parser<IExpression> TermParser()
     {
-        return ParenthesisParser().Or(FloatParser());
+        return FunctionParser().Or(ParenthesisParser().Or(FloatParser()));
         // return Parse.Number.Select(str => new FloatExpression(float.Parse(str)));
     }
 
@@ -84,18 +86,21 @@ public static class Parser
             );
     }
 
-    private static Parser<IExpression> ParseFunction() =>
+    private static Parser<IExpression> FunctionParser() =>
         from name in IdentifierParser()
         from open in Parse.Char('(')
-        from exprs in Parse.ChainOperator(Parse.Char(','), ExpressionParser(), (op, l, r) => l)
+        from exprs in ArgsParser()
         from close in Parse.Char(')')
-        select exprs; //TODO
+        select new FunctionExpression(name, exprs);
+
+    private static Parser<IList<IExpression>> ArgsParser() => 
+        ExpressionParser().Token().DelimitedBy(Parse.Char(',')).Select(x => x.ToList());
     
 
-    private static Parser<IExpression> IdentifierParser()
+    private static Parser<string> IdentifierParser()
     {
-        throw new NotImplementedException();
-        //return Parse.Letter.Many();
+        //throw new NotImplementedException();
+        return Parse.Letter.AtLeastOnce().Select(x => new string(x.ToArray()));
     }
 
     private static Parser<IExpression> FloatParser() => 
