@@ -1,18 +1,25 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Calculator.Models;
 
+/// <summary>
+/// Interface for all expressions.
+/// </summary>
 public interface IExpression
 {
     /// <summary>
     /// Similar to <c>ToString</c> but is meant for UI representation.
     /// </summary>
+    // Not really used
     string AsString();
 
     /// <summary>
-    /// Evaluates the expression into a float.
+    /// Evaluates the expression into a double.
     /// </summary>
-    double Evaluate();
+    /// <param name="context">The context to evaluate the function in.</param>
+    double Evaluate(EvaluationContext context);
 }
 
 /// <summary>
@@ -31,7 +38,7 @@ public class FloatExpression(double value) : IExpression
         return Value.ToString();
     }
 
-    public double Evaluate()
+    public double Evaluate(EvaluationContext context)
     {
         return Value;
     }
@@ -99,10 +106,10 @@ public class BinaryOperationExpression : IExpression
         return $"{Left.AsString()} {operatorChar} {Right.AsString()}";
     }
 
-    public double Evaluate()
+    public double Evaluate(EvaluationContext context)
     {
-        var left = Left.Evaluate();
-        var right = Right.Evaluate();
+        var left = Left.Evaluate(context);
+        var right = Right.Evaluate(context);
 
         return Operator switch
         {
@@ -112,5 +119,43 @@ public class BinaryOperationExpression : IExpression
             BinaryOperator.Divide => left / right,
             _ => throw new ArgumentOutOfRangeException()
         };
+    }
+}
+
+/// <summary>
+/// An expression representing a function call.
+/// </summary>
+/// <param name="name">The name of the function.</param>
+/// <param name="arguments">The arguments passed to the function.</param>
+public class FunctionExpression(string name, IList<IExpression> arguments) : IExpression
+{
+    /// <summary>
+    /// The name of the function.
+    /// </summary>
+    public string Name { get; set; } = name;
+    /// <summary>
+    /// Arguments passed to the function.
+    /// </summary>
+    public IList<IExpression> Arguments { get; set; } = arguments;
+
+    public string AsString()
+    {
+        var argList = Arguments.Select(e => e.AsString());
+        return $"{Name}({argList})";
+    }
+
+    public double Evaluate(EvaluationContext ctx)
+    {
+        var fun = ctx.Functions.GetFunction(Name);
+        if (fun == null)
+            return float.NaN;
+
+        if (Arguments.Count != fun.Value.ExpectedArguments)
+            return float.NaN;
+        
+        var args = Arguments.Select(e => e.Evaluate(ctx)).ToArray();
+
+       
+        return fun.Value.Fun(args);
     }
 }

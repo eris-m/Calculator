@@ -27,6 +27,8 @@ public partial class MainWindowViewModel : ViewModelBase
     [ObservableProperty]
     private double _output = 0.0d;
 
+    private EvaluationContext _evaluationContext = new();
+
     public MainWindowViewModel()
     {
         History.CollectionChanged += (sender, args) => InputText = "";
@@ -64,7 +66,7 @@ public partial class MainWindowViewModel : ViewModelBase
         }
         else
         {
-            Output = parsed.Value.Evaluate();
+            Output = parsed.Value.Evaluate(_evaluationContext);
         }
     }
 }

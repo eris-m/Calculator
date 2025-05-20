@@ -1,4 +1,5 @@
 using Calculator.Models;
+using Sprache;
 using BinaryOperator = Calculator.Models.BinaryOperationExpression.BinaryOperator;
 
 namespace CalculatorTests;
@@ -61,18 +62,36 @@ public class ParserTests
         Assert.That(binOp.Operator, Is.EqualTo(@operator));
     }
 
+    [Test]
+    public void TestFunction()
+    {
+        const string input = "sqrt(2)";
+        var result = Parser.ParseExpression(input);
+
+        if (!result.WasSuccessful)
+            throw new Exception("Failed to parse!");
+
+        if (result.Value is not FunctionExpression fun)
+            throw new Exception("Did not parse function!");
+
+        Assert.That(fun.Name, Is.EqualTo("sqrt"));
+        Assert.That(fun.Arguments, Has.Count.EqualTo(1));
+    }
+
     [TestCase("1 + 2*3", 7f)]
     [TestCase("(1 + 2)*3", 9f)]
     [TestCase("1 + 2 * 3 + 4", 11f)]
     public void TestExpression(string input, float expected)
     {
+        var executionCtx = new Calculator.Models.EvaluationContext();
+
         var result = Parser.ParseExpression(input);
         if (!result.WasSuccessful)
         {
             ParserError(input);
         }
 
-        var eval = result.Value.Evaluate();
+        var eval = result.Value.Evaluate(executionCtx);
 
         Assert.That(eval, Is.EqualTo(expected).Within(0.005f));
     }

@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using Avalonia.Utilities;
 using Sprache;
 using BinaryOperator = Calculator.Models.BinaryOperationExpression.BinaryOperator;
@@ -39,28 +41,10 @@ public static class Parser
         return ExpressionParser()(new Input(input));
     }
 
+    #region Terms
     private static Parser<IExpression> ExpressionParser()
     {
         return AddExpressionParser();
-    }
-
-    private static Parser<IExpression> FloatTermParser()
-    {
-        var floatParse =
-            from negative in Parse.Char('-').Optional()
-            from first in Parse.Number
-            from period in Parse.Char('.').Optional()
-            from second in Parse.Number.Optional()
-            select new FloatExpression(CreateFloat(negative, first, second));
-
-        var parenParse =
-            from open in Parse.Char('(')
-            from body in ExpressionParser()
-            from close in Parse.Char(')')
-            select body;
-
-        return parenParse.Or(floatParse);
-        // return Parse.Number.Select(str => new FloatExpression(float.Parse(str)));
     }
 
     private static Parser<IExpression> AddExpressionParser()
@@ -84,7 +68,7 @@ public static class Parser
     {
         return Parse.ChainOperator(
             Parse.Chars('*', '×', '/', '÷').Token(), 
-                FloatTermParser().Token(),
+                TermParser().Token(),
                 (op, l, r) =>
                 {
                     return op switch
@@ -96,6 +80,45 @@ public static class Parser
                 }
             );
     }
+    #endregion
+
+    #region Functions
+    private static Parser<IExpression> TermParser()
+    {
+        return FunctionParser().Or(ParenthesisParser().Or(FloatParser()));
+        // return Parse.Number.Select(str => new FloatExpression(float.Parse(str)));
+    }
+    
+    private static Parser<IExpression> FunctionParser() =>
+        from name in IdentifierParser()
+        from open in Parse.Char('(')
+        from exprs in ArgsParser()
+        from close in Parse.Char(')')
+        select new FunctionExpression(name, exprs);
+
+    private static Parser<IList<IExpression>> ArgsParser() => 
+        ExpressionParser().Token().DelimitedBy(Parse.Char(',')).Select(x => x.ToList());
+    
+
+    private static Parser<string> IdentifierParser()
+    {
+        //throw new NotImplementedException();
+        return Parse.Letter.AtLeastOnce().Select(x => new string(x.ToArray()));
+    }
+    #endregion
+
+    private static Parser<IExpression> FloatParser() => 
+        from negative in Parse.Char('-').Optional()
+        from first in Parse.Number
+        from period in Parse.Char('.').Optional()
+        from second in Parse.Number.Optional()
+        select new FloatExpression(CreateFloat(negative, first, second));
+
+    private static Parser<IExpression> ParenthesisParser() =>
+        from open in Parse.Char('(')
+        from body in ExpressionParser()
+        from close in Parse.Char(')')
+        select body;
 
     private static double CreateFloat(IOption<char> negative, string whole, IOption<string> fraction)
     {
