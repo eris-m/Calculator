@@ -134,8 +134,12 @@ public class FunctionExpression(string name, IList<IExpression> arguments) : IEx
         if (fun == null)
             return float.NaN;
 
+        if (Arguments.Count != fun.Value.ExpectedArguments)
+            return float.NaN;
+        
         var args = Arguments.Select(e => e.Evaluate(ctx)).ToArray();
 
-        return fun(args);
+       
+        return fun.Value.Fun(args);
     }
 }
