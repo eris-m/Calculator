@@ -55,6 +55,7 @@ public class VariableRegistry
         var constants = new Dictionary<string, double>();
 
         constants["pi"] = double.Pi;
+        constants["tau"] = double.Tau;
         constants["e"] = double.E;
         constants["gold"] = (1 + double.Sqrt(5)) / 2; // golden ratio
 
