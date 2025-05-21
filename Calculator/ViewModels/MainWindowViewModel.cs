@@ -16,7 +16,7 @@ public partial class CalculationViewModel: ViewModelBase
     private string _expression;
     [ObservableProperty]
     private double _value;
-
+    
     public CalculationViewModel(EvaluationContext context, string expression)
     {
         _context = context;
@@ -29,6 +29,8 @@ public partial class CalculationViewModel: ViewModelBase
     {
     }
 
+    public Action<CalculationViewModel> RemoveAction;
+    
     public string Expression
     {
         get => _expression;
@@ -38,6 +40,12 @@ public partial class CalculationViewModel: ViewModelBase
         }
     }
 
+    [RelayCommand]
+    private void Remove()
+    {
+        RemoveAction(this);
+    }
+    
     private void UpdateValue()
     {
         var parseResult = Parser.ParseExpression(Expression);
@@ -65,14 +73,14 @@ public partial class MainWindowViewModel : ViewModelBase
 
     public MainWindowViewModel()
     {
-        History = [new(_evaluationContext)];
+        History = [CalculationFactory()];
         //History.CollectionChanged += (sender, args) => InputText = "";
     }
     
     [RelayCommand]
     public void OnEquals()
     {
-        History.Add(new(_evaluationContext));
+        History.Add(CalculationFactory());
         //History.Add($"{InputText} = {Output}");
     }
     
@@ -90,6 +98,18 @@ public partial class MainWindowViewModel : ViewModelBase
         
         CurrentInput.Expression = CurrentInput.Expression[..^1];
         //TODO
+    }
+
+    private CalculationViewModel CalculationFactory(string expr = "")
+    {
+        var calc = new CalculationViewModel(_evaluationContext, expr);
+        calc.RemoveAction += model =>
+        {
+            if (History.Count > 1)
+                History.Remove(model);
+        };
+
+        return calc;
     }
     
     //private void RunCalculation()

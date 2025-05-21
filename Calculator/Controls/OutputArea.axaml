@@ -14,6 +14,7 @@
                         <DockPanel>
 							<Label DockPanel.Dock="Right" Content="{Binding Value}" />
 							<TextBox Text="{Binding Expression}" />
+                            <Button Command="{Binding RemoveCommand}">X</Button>
 						</DockPanel>
 					</DataTemplate>
                 </ItemsControl.ItemTemplate>
