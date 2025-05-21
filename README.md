@@ -5,8 +5,9 @@ A simple calculator app, made with avalonia!
 ## Features.
 
 - 4 function arithmetic, with proper order of operations,
-- Parenthesis,
-- and (some) Functions!
+- parenthesis,
+- some functions,
+- and, some constants. 
 
 ## Supported functions.
 
@@ -27,3 +28,14 @@ Currently, the following functions are supported:
 | `max(x, y)`  | Maximum of `x` and `y`.                                         |
 | `floor(x)`   | Rounds `x` down to the nearest integer.                         |
 | `ceil(x)`    | Rounds `x` up to the nearest integer.                           |
+
+## Constants
+
+There are 4 constants defined by default:
+
+| name   | approx value |                          description                           |
+| ------ | ------------ | -------------------------------------------------------------  |
+| `pi`   |   3.14159    | π, the ratio between a circle's circumference to its diameter. |
+| `tau`  |   6.28318    |   τ, the ratio between a circle's circumference and radius.    |
+| `e`    |              |         e, the natural logarithm/exponent constant.            |
+| `gold` |              |                      The golden ratio.                         |
