@@ -22,8 +22,8 @@
         <vm:MainWindowViewModel />
     </Design.DataContext>
 
-    <Grid ColumnDefinitions="1.5*,1*">
-        <controls:ButtonGrid Grid.Column="0" />
-        <controls:OutputArea Grid.Column="1" />
-    </Grid>
+    <DockPanel>
+        <controls:ButtonGrid DockPanel.Dock="Bottom" />
+        <controls:OutputArea />
+    </DockPanel>
 </Window>

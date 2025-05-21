@@ -7,7 +7,7 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Calculator.Controls.ButtonGrid"
              x:DataType="vm:MainWindowViewModel">
-    <Grid DockPanel.Dock="Bottom" ColumnDefinitions="*,*,*,*" RowDefinitions="*,*,*,*,*">
+    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ColumnDefinitions="*,*,*,*" RowDefinitions="*,*,*,*,*">
         <!-- Row 0 -->
         <!-- <Button Grid.Row="0" Grid.Column="0" Classes="stretch" > -->
         <!--     <Button.Command><Binding Path="OnButtonClick" /></Button.Command> -->
