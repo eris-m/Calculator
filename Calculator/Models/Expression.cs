@@ -141,6 +141,26 @@ public class VariableAssignmentExpression(string name, IExpression value) : IExp
     }
 }
 
+public class VariableExpression(string name) : IExpression
+{
+    public string Name { get; set; } = name;
+
+    public string AsString()
+    {
+        return Name;
+    }
+
+    public double Evaluate(EvaluationContext context)
+    {
+        if (!context.Variables.TryGetValue(Name, out var valueResult))
+        {
+            return double.NaN;
+        }
+
+        return valueResult;
+    }
+}
+
 /// <summary>
 /// An expression representing a function call.
 /// </summary>
