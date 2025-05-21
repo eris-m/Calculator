@@ -152,7 +152,7 @@ public class VariableExpression(string name) : IExpression
 
     public double Evaluate(EvaluationContext context)
     {
-        if (!context.Variables.TryGetValue(Name, out var valueResult))
+        if (!context.Variables.TryGet(Name, out var valueResult))
         {
             return double.NaN;
         }

@@ -21,5 +21,5 @@ public sealed class EvaluationContext
     /// </summary>
     public FunctionRegistry Functions { get; set; } = new();
 
-    public Dictionary<string, double> Variables { get; set; } = [];
+    public VariableRegistry Variables { get; set; } = new();
 }
