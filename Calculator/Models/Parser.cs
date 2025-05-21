@@ -85,10 +85,20 @@ public static class Parser
     #region Functions
     private static Parser<IExpression> TermParser()
     {
-        return FunctionParser().Or(ParenthesisParser().Or(FloatParser()));
+        return VariableParser().Or(
+            FunctionParser().Or(
+                ParenthesisParser().Or(FloatParser())
+                )
+            );
         // return Parse.Number.Select(str => new FloatExpression(float.Parse(str)));
     }
-    
+
+    private static Parser<IExpression> VariableParser() =>
+        from name in IdentifierParser()
+        from eq in Parse.Char('=').Token()
+        from value in ExpressionParser()
+        select new VariableAssignmentExpression(name, value);
+
     private static Parser<IExpression> FunctionParser() =>
         from name in IdentifierParser()
         from open in Parse.Char('(')

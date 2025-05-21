@@ -122,6 +122,25 @@ public class BinaryOperationExpression : IExpression
     }
 }
 
+public class VariableAssignmentExpression(string name, IExpression value) : IExpression
+{
+    public string Name { get; set; } = name;
+    public IExpression Value { get; set; } = value;
+
+    public string AsString()
+    {
+        return $"{Name} = {Value.AsString()}";
+    }
+
+    public double Evaluate(EvaluationContext context)
+    {
+        var valueResult = Value.Evaluate(context);
+
+        context.Variables[Name] = valueResult;
+        return valueResult;
+    }
+}
+
 /// <summary>
 /// An expression representing a function call.
 /// </summary>
@@ -152,10 +171,10 @@ public class FunctionExpression(string name, IList<IExpression> arguments) : IEx
 
         if (Arguments.Count != fun.Value.ExpectedArguments)
             return float.NaN;
-        
+
         var args = Arguments.Select(e => e.Evaluate(ctx)).ToArray();
 
-       
+
         return fun.Value.Fun(args);
     }
 }
