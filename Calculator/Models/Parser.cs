@@ -38,7 +38,7 @@ public static class Parser
     /// <param name="input">The input string to be parsed.</param>
     public static IResult<IExpression> ParseExpression(string input)
     {
-        return ExpressionParser()(new Input(input));
+        return VariableAssignParser().Or(ExpressionParser())(new Input(input));
     }
 
     #region Terms
@@ -80,15 +80,31 @@ public static class Parser
                 }
             );
     }
+    
+    private static Parser<IExpression> TermParser()
+    {
+        return
+            FunctionParser().Or(
+                VariableParser().Or(
+                    ParenthesisParser().Or(FloatParser())
+                )
+            );
+        // return Parse.Number.Select(str => new FloatExpression(float.Parse(str)));
+    }
+    #endregion
+
+    #region Variables
+    private static Parser<IExpression> VariableAssignParser() =>
+        from name in IdentifierParser()
+        from eq in Parse.Char('=').Token()
+        from value in ExpressionParser()
+        select new VariableAssignmentExpression(name, value);
+
+    private static Parser<IExpression> VariableParser() =>
+        IdentifierParser().Select(id => new VariableExpression(id));
     #endregion
 
     #region Functions
-    private static Parser<IExpression> TermParser()
-    {
-        return FunctionParser().Or(ParenthesisParser().Or(FloatParser()));
-        // return Parse.Number.Select(str => new FloatExpression(float.Parse(str)));
-    }
-    
     private static Parser<IExpression> FunctionParser() =>
         from name in IdentifierParser()
         from open in Parse.Char('(')

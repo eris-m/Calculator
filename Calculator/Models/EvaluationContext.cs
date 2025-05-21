@@ -12,8 +12,6 @@ namespace Calculator.Models;
 /// </summary>
 public sealed class EvaluationContext
 {
-    //private FunctionRegistry _registry = new();
-
     public EvaluationContext()
     {
     }
@@ -22,4 +20,6 @@ public sealed class EvaluationContext
     /// The functions registered.
     /// </summary>
     public FunctionRegistry Functions { get; set; } = new();
+
+    public Dictionary<string, double> Variables { get; set; } = [];
 }
