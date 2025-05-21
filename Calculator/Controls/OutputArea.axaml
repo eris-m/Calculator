@@ -6,7 +6,7 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Calculator.Controls.OutputArea"
              x:DataType="vm:MainWindowViewModel">
-    <StackPanel DockPanel.Dock="Right" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+    <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Bottom">
         <!-- History -->
             <ItemsControl ItemsSource="{Binding History}">
                 <ItemsControl.ItemTemplate>
